@@ -1,9 +1,8 @@
 
 
 import React, {useState} from 'react'
-import { Modal, Text, Button, SafeAreaView, StyleSheet, TextInput, View, ScrollView
-} from 'react-native'
-//import DatePicker from 'react-native-date-picker'
+import { Modal, Text, Button, SafeAreaView, StyleSheet, TextInput, View, ScrollView, Pressable } from 'react-native'
+import DatePicker from 'react-native-date-picker'
 
 const Formulario = ({modalVisible }) => {
 
@@ -28,6 +27,8 @@ const Formulario = ({modalVisible }) => {
                 >Cita
                 </Text>
             </Text>
+            
+
 
             <View style={styles.campo}>
                     <Text style={styles.label}
@@ -84,6 +85,20 @@ const Formulario = ({modalVisible }) => {
                     />
             </View>
 
+            <View style={styles.campo}>
+                    <Text style={styles.label}
+                    >Fecha Alta
+                    </Text>
+                    <View style={styles.fechaContenedor}>
+                        <DatePicker
+                            date={fecha}
+                            locale='es'
+                            onDateChange={(date) => setFecha(date)}
+                        
+                        />
+                    </View>
+                    
+            </View>
           
             <View style={styles.campo}>
                     <Text style={styles.label}
@@ -141,6 +156,10 @@ const styles = StyleSheet.create({
     },
     sintomasImput: {
         height: 100
+    },
+    fechaContenedor: {
+        backgroundColor: '#FFF',
+        borderRadius: 10
     }
 })
 
