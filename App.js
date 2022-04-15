@@ -6,10 +6,12 @@ import {
   StyleSheet,
   Button,
   Pressable,
-  Modal
+  Modal,
+  FlatList
 
 } from 'react-native';
 
+import Paciente from './src/components/Paciente';
 import Formulario from './src/components/Formulario';
 
 const App = () => {
@@ -62,6 +64,26 @@ const App = () => {
           >Nueva Cita</Text>
       </Pressable>
 
+      {pacientes.length === 0 ? //si es igual a 0 entonces "no hay pacientes" si es diferente a 0 te muestra los pacietnes
+      
+      <Text style= {styles.noPacientes}>No hay pacientes aun
+      </Text>: 
+      <FlatList
+        data={pacientes}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => {
+          
+          return(
+            <Paciente 
+              item={item}
+            />
+          )
+        }}
+
+      />
+    }
+
+
       <Formulario
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
@@ -106,6 +128,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '900',
     textTransform: 'uppercase'
+  },
+  noPacientes:{
+    marginTop: 40,
+    textAlign: 'center',
+    fontSize: 24,
+    fontWeight: '600'
+
   }
 
 })

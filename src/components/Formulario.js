@@ -26,6 +26,7 @@ const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes }) =
         }
 
         const nuevoPaciente = {
+            id: Date.now(),
             paciente,
             propietario,
             email,
@@ -35,6 +36,16 @@ const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes }) =
         }
 
         setPacientes([...pacientes, nuevoPaciente])
+        setModalVisible(!modalVisible)
+
+        setPaciente('')
+        setPropietario('')
+        setEmail('')
+        setTelefono('')
+        setFecha(new Date())
+        setSintomas('')
+        //con esto borramos los campos escritos
+
     }    
 
   return (
