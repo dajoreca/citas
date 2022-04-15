@@ -57,12 +57,13 @@ const App = () => {
 
           <Text
             style={styles.btnTextoNuevaCita}
-            onPress={() => setModalVisible(true)}
+            onPress={() => setModalVisible(!modalVisible)}
           >Nueva Cita</Text>
       </Pressable>
 
       <Formulario
         modalVisible={modalVisible}
+        setModalVisible= {setModalVisible}
       
       />
     
