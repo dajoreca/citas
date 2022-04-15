@@ -17,6 +17,7 @@ const App = () => {
   const [modalVisible, setModalVisible] = useState (false) 
     console.log(modalVisible)
 
+  const [pacientes, setPacientes] = useState ([])
 
   const nuevaCitaHandler = () => {
     console.log('diste click...')
@@ -63,7 +64,9 @@ const App = () => {
 
       <Formulario
         modalVisible={modalVisible}
-        setModalVisible= {setModalVisible}
+        setModalVisible={setModalVisible}
+        pacientes={pacientes}
+        setPacientes= {setPacientes}
       
       />
     
