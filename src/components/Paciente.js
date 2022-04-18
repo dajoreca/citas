@@ -3,7 +3,7 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 
-const Paciente = ({item}) => {
+const Paciente = ({item, setModalVisible}) => {
     const {paciente, fecha} = item 
 
     const formatearFecha = fecha => {
@@ -33,7 +33,10 @@ const Paciente = ({item}) => {
         
         
         <View style={styles.contenedorBotones}>
-          <Pressable style={[styles.btn, styles.btnEditar]}>
+          <Pressable 
+            style={[styles.btn, styles.btnEditar]}
+            onLongPress={ () => setModalVisible(true)}
+          >
               <Text style={styles.btnTexto}>Editar</Text>
           </Pressable>
 

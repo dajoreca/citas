@@ -22,7 +22,7 @@ const App = () => {
   const [pacientes, setPacientes] = useState ([])
 
   const nuevaCitaHandler = () => {
-    console.log('diste click...')
+    //console.log('diste click...')
   }
       //Esto es mejor que :
       //<Pressable
@@ -77,6 +77,7 @@ const App = () => {
           return(
             <Paciente 
               item={item}
+              setModalVisible={setModalVisible}
             />
           )
         }}
