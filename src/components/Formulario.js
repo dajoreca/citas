@@ -4,7 +4,15 @@ import React, {useState, useEffect} from 'react'
 import { Modal, Text, Button, SafeAreaView, StyleSheet, TextInput, View, ScrollView, Pressable, Alert } from 'react-native'
 import DatePicker from 'react-native-date-picker'
 
-const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes,paciente: pacienteObj }) => {
+const Formulario = ({
+    modalVisible, 
+    setModalVisible, 
+    pacientes, 
+    setPacientes,
+    paciente: pacienteObj, 
+    setPaciente: setPacienteApp
+
+}) => {
 
     const [paciente, setPaciente] = useState('')
     const [id, setId] = useState('')
@@ -65,6 +73,7 @@ const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes,paci
             const pacientesActualizados = pacientes.map ( pacienteState => pacienteState.id === nuevoPaciente.id ? nuevoPaciente : pacienteState )
 
             setPacientes(pacientesActualizados)
+            setPacienteApp({})
 
         }  else{
             //Nuevo Registro
@@ -77,7 +86,7 @@ const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes,paci
 
        //Los siguientes no lo muevo arriba ya que oculta el Modal o resetear el formulario
         setModalVisible(!modalVisible)
-
+        setId('')
         setPaciente('')
         setPropietario('')
         setEmail('')
@@ -104,7 +113,17 @@ const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes,paci
             </Text>
             <Pressable 
                 style={styles.btnCancelar}
-                onLongPress={() => setModalVisible(!modalVisible)}
+                onLongPress={() => {
+                    setModalVisible(!modalVisible)
+                    setPacienteApp({})
+                    setId('')
+                    setPaciente('')
+                    setPropietario('')
+                    setEmail('')
+                    setTelefono('')
+                    setFecha(new Date())
+                    setSintomas('')
+                }}
             >
                 <Text style={styles.btnCancelarTexto}
                 >X Cancelar
