@@ -20,10 +20,19 @@ const App = () => {
     console.log(modalVisible)
 
   const [pacientes, setPacientes] = useState ([])
+  const [paciente, setPaciente] = useState ({})
 
-  const nuevaCitaHandler = () => {
-    //console.log('diste click...')
+
+  const pacienteEditar = id => {
+    const pacienteEditar = pacientes.filter(paciente => paciente.id === id)
+
+      setPaciente(pacienteEditar[0])
+
   }
+
+  //const nuevaCitaHandler = () => {
+    //console.log('diste click...')
+  //}
       //Esto es mejor que :
       //<Pressable
       //onPress={ () => {
@@ -38,7 +47,8 @@ const App = () => {
       </Text>
 
       <Pressable
-        onPress = { nuevaCitaHandler }
+        style={styles.btnNuevaCita}
+        onPress = {() => setModalVisible(!modalVisible)}
       //para un codigo corto no esta mal, pero mejor sacarlo del return
         //onPress={ () => {
         // console.log('Presionaste el boton 1')
@@ -55,13 +65,12 @@ const App = () => {
         //onPressOut={ () => {
         //  console.log('Dejaste de presionar el boton')
         //}}
-        style={styles.btnNuevaCita}
+        
       >
 
           <Text
             style={styles.btnTextoNuevaCita}
-            onPress={() => setModalVisible(!modalVisible)}
-          >Nueva Cita</Text>
+           >Nueva Cita</Text>
       </Pressable>
 
       {pacientes.length === 0 ? //si es igual a 0 entonces "no hay pacientes" si es diferente a 0 te muestra los pacietnes
@@ -78,6 +87,7 @@ const App = () => {
             <Paciente 
               item={item}
               setModalVisible={setModalVisible}
+              pacienteEditar={pacienteEditar}
             />
           )
         }}
@@ -91,6 +101,7 @@ const App = () => {
         setModalVisible={setModalVisible}
         pacientes={pacientes}
         setPacientes= {setPacientes}
+        paciente={paciente}
       
       />
     

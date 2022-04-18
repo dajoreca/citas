@@ -1,17 +1,38 @@
 
 
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Modal, Text, Button, SafeAreaView, StyleSheet, TextInput, View, ScrollView, Pressable, Alert } from 'react-native'
 import DatePicker from 'react-native-date-picker'
 
-const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes }) => {
+const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes,paciente: pacienteObj }) => {
 
     const [paciente, setPaciente] = useState('')
+    const [id, setId] = useState('')
     const [propietario, setPropietario] = useState('')
     const [email, setEmail] = useState('')
     const [telefono, setTelefono] = useState('')
     const [fecha, setFecha] = useState(new Date())
     const [sintomas, setSintomas] = useState('')
+
+    useEffect(() => {
+        if(Object.keys(pacienteObj).length > 0 ) {
+
+            setPaciente(pacienteObj.paciente)
+            setId(pacienteObj.Id)
+            setPropietario(pacienteObj.propietario)
+            setEmail(pacienteObj.email)
+            setTelefono(pacienteObj.telefono)
+            setFecha(pacienteObj.fecha)
+            setSintomas(pacienteObj.sintomas)
+
+        }
+
+    }, [])
+
+
+
+
+
     const handleCita = () => {
         //Validar
         if([paciente,propietario,email, fecha,sintomas].includes('')){
@@ -25,8 +46,10 @@ const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes }) =
             return
         }
 
+
+        //Revisar si es un registro nuevo o edicion
+
         const nuevoPaciente = {
-            id: Date.now(),
             paciente,
             propietario,
             email,
@@ -35,7 +58,24 @@ const Formulario = ({modalVisible, setModalVisible, pacientes, setPacientes }) =
             sintomas
         }
 
-        setPacientes([...pacientes, nuevoPaciente])
+        if(id) {
+            //Editando
+            nuevoPaciente.id = id
+
+            const pacientesActualizados = pacientes.map ( pacienteState => pacienteState.id === nuevoPaciente.id ? nuevoPaciente : pacienteState )
+
+            setPacientes(pacientesActualizados)
+
+        }  else{
+            //Nuevo Registro
+            nuevoPaciente.id = Date.now()
+            setPacientes([...pacientes, nuevoPaciente])
+            //Muevo SetPacientes ya que me agrega un nuevo paciente
+        
+        
+        }
+
+       //Los siguientes no lo muevo arriba ya que oculta el Modal o resetear el formulario
         setModalVisible(!modalVisible)
 
         setPaciente('')
