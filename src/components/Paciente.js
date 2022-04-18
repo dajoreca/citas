@@ -24,9 +24,14 @@ const Paciente = ({item}) => {
     return (
       <View style={styles.contenedor}>
         <Text style={styles.label}>Paciente:</Text>
-        <Text style={styles.texto}>{paciente}</Text> 
-        <Text style={styles.fecha}>{formatearFecha(fecha)}</Text>
+        <View style={styles.contenedrFyP}>
+        
+          <Text style={styles.texto}>{paciente}</Text> 
+          <Text style={styles.fecha}>{formatearFecha(fecha)}</Text>
 
+        </View>
+        
+        
         <View style={styles.contenedorBotones}>
           <Pressable style={[styles.btn, styles.btnEditar]}>
               <Text style={styles.btnTexto}>Editar</Text>
@@ -46,10 +51,12 @@ const Paciente = ({item}) => {
 
 const styles=StyleSheet.create({
   contenedor: {
+    
     backgroundColor: '#FFF',
     padding: 20,
     borderBottomColor: '#94A3B8',
-    borderBottomWidth: 4
+    borderBottomWidth: 4,
+    borderRadius: 10
 
   },
 
@@ -100,6 +107,11 @@ const styles=StyleSheet.create({
     fontWeight:'700',
     fontSize: 12,
     color:'#FFF'
+  },
+  contenedrFyP:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10
   }
 
   
