@@ -111,7 +111,7 @@ const Formulario = ({
             <ScrollView>
             <Text
                 style={styles.titulo}
-            >Nueva {''}
+            >{pacienteObj.id ? 'Editar' : 'Nueva'} {''}
                 <Text style={styles.tituloBold}
                 >Cita
                 </Text>
@@ -225,10 +225,10 @@ const Formulario = ({
             <Pressable
                 style={styles.btnNuevaCita}
                 onPress={handleCita}
-        
             >
                 <Text style={styles.btnNuevaCitaTexto}
-                >Agregar Paciente
+                >{pacienteObj.id ? 'Editar' : 'Agregar'} {''} 
+                <Text>Paciente </Text>
                 </Text>
 
             </Pressable>
