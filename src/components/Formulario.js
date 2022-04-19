@@ -24,9 +24,8 @@ const Formulario = ({
 
     useEffect(() => {
         if(Object.keys(pacienteObj).length > 0 ) {
-
+            setId(pacienteObj.id)
             setPaciente(pacienteObj.paciente)
-            setId(pacienteObj.Id)
             setPropietario(pacienteObj.propietario)
             setEmail(pacienteObj.email)
             setTelefono(pacienteObj.telefono)
@@ -67,6 +66,8 @@ const Formulario = ({
         }
 
         if(id) {
+
+            console.log('estoy en el if')
             //Editando
             nuevoPaciente.id = id
 
@@ -77,7 +78,9 @@ const Formulario = ({
             setPacientes(pacientesActualizados)
             setPacienteApp({})
 
+            
         }  else{
+            console.log('estoy en else')
             //Nuevo Registro
             nuevoPaciente.id = Date.now()
             setPacientes([...pacientes, nuevoPaciente])
