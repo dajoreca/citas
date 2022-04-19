@@ -8,14 +8,14 @@ const Formulario = ({
     modalVisible, 
     setModalVisible, 
     pacientes, 
-    setPacientes,
+    setPacientes, 
     paciente: pacienteObj, 
-    setPaciente: setPacienteApp
+    setPaciente:setPacienteApp 
 
 }) => {
 
-    const [paciente, setPaciente] = useState('')
     const [id, setId] = useState('')
+    const [paciente, setPaciente] = useState('')
     const [propietario, setPropietario] = useState('')
     const [email, setEmail] = useState('')
     const [telefono, setTelefono] = useState('')
@@ -35,13 +35,13 @@ const Formulario = ({
 
         }
 
-    }, [])
+    }, [pacienteObj]) // con [] se va a ejecutar una sola vez
 
 
 
 
 
-    const handleCita = () => {
+    const handleCita = () => { // para la validacion de que todos los campos esten completos
         //Validar
         if([paciente,propietario,email, fecha,sintomas].includes('')){
             Alert.alert(
@@ -70,7 +70,9 @@ const Formulario = ({
             //Editando
             nuevoPaciente.id = id
 
-            const pacientesActualizados = pacientes.map ( pacienteState => pacienteState.id === nuevoPaciente.id ? nuevoPaciente : pacienteState )
+            const pacientesActualizados = pacientes.map ( pacienteState => 
+            pacienteState.id === nuevoPaciente.id ? nuevoPaciente : 
+            pacienteState)
 
             setPacientes(pacientesActualizados)
             setPacienteApp({})
@@ -123,7 +125,8 @@ const Formulario = ({
                     setTelefono('')
                     setFecha(new Date())
                     setSintomas('')
-                }}
+                }} 
+
             >
                 <Text style={styles.btnCancelarTexto}
                 >X Cancelar

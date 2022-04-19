@@ -26,7 +26,7 @@ const App = () => {
   const pacienteEditar = id => {
     const pacienteEditar = pacientes.filter(paciente => paciente.id === id)
 
-      setPaciente(pacienteEditar[0])
+      setPaciente(pacienteEditar[0]) //tretona un aeglo y con esto lo hae objeto
 
   }
 
