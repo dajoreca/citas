@@ -7,12 +7,14 @@ import {
   Button,
   Pressable,
   Modal,
-  FlatList
+  FlatList,
+  Alert
 
 } from 'react-native';
 
 import Paciente from './src/components/Paciente';
 import Formulario from './src/components/Formulario';
+import { sin } from 'react-native/Libraries/Animated/Easing';
 
 const App = () => {
 
@@ -30,6 +32,24 @@ const App = () => {
 
   }
 
+  const pacienteEliminar = id => {
+      Alert.alert(
+        '¿Deseas eliminar este paciente?',
+        'Un paciente eliminado, no se puede recuperar',
+        [
+          {text: 'Cancelar'},
+          {text: 'Si, Eliminar', onPress: () => {
+            const pacientesActualizados = pacientes.filter(
+              pacientesState => pacientesState.id !== id)
+
+              setPacientes(pacientesActualizados)
+          }}
+
+        ]
+      )
+
+
+  }
   //const nuevaCitaHandler = () => {
     //console.log('diste click...')
   //}
@@ -88,6 +108,7 @@ const App = () => {
               item={item}
               setModalVisible={setModalVisible}
               pacienteEditar={pacienteEditar}
+              pacienteEliminar={pacienteEliminar}
             />
           )
         }}
