@@ -12,6 +12,7 @@ import {
 
 } from 'react-native';
 
+import InformacionPaciente from './src/components/InformacionPaciente';
 import Paciente from './src/components/Paciente';
 import Formulario from './src/components/Formulario';
 import { sin } from 'react-native/Libraries/Animated/Easing';
@@ -23,6 +24,7 @@ const App = () => {
 
   const [pacientes, setPacientes] = useState ([])
   const [paciente, setPaciente] = useState ({})
+  const[modalPaciente, setModalPaciente] = useState(false)
 
 
   const pacienteEditar = id => {
@@ -107,8 +109,10 @@ const App = () => {
             <Paciente 
               item={item}
               setModalVisible={setModalVisible}
+              setPaciente={setPaciente}
               pacienteEditar={pacienteEditar}
               pacienteEliminar={pacienteEliminar}
+              setModalPaciente={setModalPaciente}
             />
           )
         }}
@@ -126,6 +130,18 @@ const App = () => {
         setPaciente={setPaciente}
       
       />
+
+      <Modal
+        visible={modalPaciente}
+        animationType='fade'
+      >
+
+        <InformacionPaciente 
+          paciente={paciente}
+          setModalPaciente={setModalPaciente}
+        />
+
+      </Modal>
     
     </SafeAreaView>
   );
