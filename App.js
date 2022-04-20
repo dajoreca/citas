@@ -61,6 +61,11 @@ const App = () => {
         //console.log('Presionaste el boton 1')
       //}}
 
+
+  const cerrarModal= () => {
+    setModalVisible(false)
+
+  }
   return (
     <SafeAreaView style ={styles.container}>
       <Text style={styles.titulo}> Administrador de Citas {' '} 
@@ -120,16 +125,18 @@ const App = () => {
       />
     }
 
+      {modalVisible && (
+          <Formulario
+            cerrarModal={cerrarModal}
+              pacientes={pacientes}
+              setPacientes= {setPacientes}
+              paciente={paciente}
+              setPaciente={setPaciente}
 
-      <Formulario
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        pacientes={pacientes}
-        setPacientes= {setPacientes}
-        paciente={paciente}
-        setPaciente={setPaciente}
-      
-      />
+          />
+        
+      )}
+     
 
       <Modal
         visible={modalPaciente}
@@ -138,6 +145,7 @@ const App = () => {
 
         <InformacionPaciente 
           paciente={paciente}
+          setPaciente={setPaciente}
           setModalPaciente={setModalPaciente}
         />
 

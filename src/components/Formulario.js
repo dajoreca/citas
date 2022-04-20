@@ -3,10 +3,11 @@
 import React, {useState, useEffect} from 'react'
 import { Modal, Text, Button, SafeAreaView, StyleSheet, TextInput, View, ScrollView, Pressable, Alert } from 'react-native'
 import DatePicker from 'react-native-date-picker'
+import { createRootTag } from 'react-native/Libraries/ReactNative/RootTag'
 
 const Formulario = ({
     modalVisible, 
-    setModalVisible, 
+    cerrarModal,
     pacientes, 
     setPacientes, 
     paciente: pacienteObj, 
@@ -90,7 +91,7 @@ const Formulario = ({
         }
 
        //Los siguientes no lo muevo arriba ya que oculta el Modal o resetear el formulario
-        setModalVisible(!modalVisible)
+        cerrarModal()
         setId('')
         setPaciente('')
         setPropietario('')
@@ -119,7 +120,7 @@ const Formulario = ({
             <Pressable 
                 style={styles.btnCancelar}
                 onLongPress={() => {
-                    setModalVisible(!modalVisible)
+                    cerrarModal()
                     setPacienteApp({})
                     setId('')
                     setPaciente('')
